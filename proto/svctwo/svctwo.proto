@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package svctwo;
+option go_package = "github.com/sgtsquiggs/grpc_gateway_bug/svc/two/proto";
+
+import "google/api/annotations.proto";
+import "svcone/svcone.proto";
+
+service SVCTwo {
+	rpc ExportData (svcone.ExportDataRequest) returns (svcone.ExportDataResponse) {
+		option (google.api.http) = {
+    		post: "/{table}:exportData"
+    		body: "*"
+    	};
+	}
+}

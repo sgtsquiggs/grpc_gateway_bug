@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package svcone;
+option go_package = "github.com/sgtsquiggs/grpc_gateway_bug/svc/one/proto";
+
+service SVCOne {
+	rpc ExportData (ExportDataRequest) returns (ExportDataResponse);
+}
+
+enum Table {
+	TABLE_INVALID = 0;
+	LEDGERS = 1;
+	TRANSACTIONS = 2;
+	TRADES = 3;
+	CORPORATEACTIONS = 4;
+}
+
+message ExportDataRequest {
+	Table table = 1;
+}
+
+message ExportDataResponse {
+	repeated string data = 1;
+}
